@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import { MaterialModule } from '@angular/material';
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     //MaterialModule,
     MdButtonModule, 
+    MdCheckboxModule,
     MdCardModule, 
     MdMenuModule, 
     MdToolbarModule, 
