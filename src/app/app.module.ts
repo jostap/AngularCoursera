@@ -6,15 +6,19 @@ import { HttpModule } from '@angular/http';
 //import { MaterialModule } from '@angular/material';
 import { MdButtonModule, MdCheckboxModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatGridListModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material';
 
 import 'hammerjs';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { DishdetailComponent } from './dishdetail/dishdetail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    DishdetailComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { MenuComponent } from './menu/menu.component';
     MdMenuModule, 
     MdToolbarModule, 
     MdIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
