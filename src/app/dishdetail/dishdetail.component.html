@@ -29,9 +29,9 @@
 
   <div fxFlex="40" *ngIf="dish">
     <md-list>
-          <h3>
-            Comments
-          </h3>
+      <h3>
+        Comments
+      </h3>
       <md-list-item *ngFor="let comment of dish.comments"> 
         <p>{{ comment.comment }}</p>
         <p>{{ comment.rating }} Stars</p>
