@@ -9,8 +9,8 @@ import { Feedback, ContactType } from './../shared/feedback';
 })
 export class ContactComponent implements OnInit {
 
-  feebackForm: FormGroup;
-  feeback: Feedback;
+  feedbackForm: FormGroup;
+  feedback: Feedback;
   contactType = ContactType;
   @ViewChild(FormGroupDirective) feebackFormDirective;
 
@@ -22,11 +22,11 @@ export class ContactComponent implements OnInit {
   }
 
   createForm() {
-    this.feebackForm = this.fb.group({
-      firstname: '',
-      lastname: '',
-      telnum: 0,
-      email: '',
+    this.feedbackForm = this.fb.group({
+      firstname: ['', Validators.required ],
+      lastname: ['', Validators.required ],
+      telnum: ['', Validators.required ],
+      email: ['', Validators.required ],
       agree: false,
       contacttype: 'None',
       message: ''
@@ -34,9 +34,25 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.feeback = this.feebackForm.value;
-    console.log(this.feeback);
-    //this.feebackForm.reset();
-    this.feebackFormDirective.resetForm();
+    this.feedback = this.feedbackForm.value;
+    console.log(this.feedback);
+    /* this.feedbackForm.reset({
+      firstname: '',
+      lastname: '',
+      telnum: '',
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    }); */
+    this.feebackFormDirective.resetForm({
+      firstname: '',
+      lastname: '',
+      telnum: '',
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
   }
 }
