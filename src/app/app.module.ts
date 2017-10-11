@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MdButtonModule, MdCheckboxModule, MdCardModule, MdMenuModule, MdToolbarModule, MatSelectModule,
          MdIconModule, MatGridListModule, MatAutocompleteModule, MatListModule, MatSlideToggleModule,
-         MatCardModule, MatDialogModule, MatInputModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
+         MatCardModule, MatDialogModule, MatInputModule, MatCheckboxModule, MatProgressSpinnerModule, MatSliderModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
@@ -60,7 +60,8 @@ import { LoginComponent } from './login/login.component';
     MatCheckboxModule,
     FlexLayoutModule,
     AppRoutingModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSliderModule
   ],
   providers: [
     DishService,
