@@ -4,9 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MdButtonModule, MdCheckboxModule, MdCardModule, MdMenuModule, MdToolbarModule, MatSelectModule,
-         MdIconModule, MatGridListModule, MatAutocompleteModule, MatListModule, MatSlideToggleModule,
-         MatCardModule, MatDialogModule, MatInputModule, MatCheckboxModule, MatProgressSpinnerModule, MatSliderModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatRadioModule, 
+         MatSelectModule, MatSliderModule, MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
+         MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
@@ -28,6 +28,8 @@ import { LoginComponent } from './login/login.component';
 
 import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { RestangularModule, Restangular} from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 @NgModule({
   declarations: [
@@ -47,26 +49,26 @@ import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    MdButtonModule, 
-    MdCheckboxModule,
-    MdCardModule, 
-    MdMenuModule, 
-    MdToolbarModule, 
-    MatSelectModule,
-    MdIconModule,
+    MatButtonModule, 
+    MatCheckboxModule, 
+    MatDatepickerModule, 
+    MatFormFieldModule,
+    MatInputModule, 
+    MatRadioModule, 
+    MatSelectModule, 
+    MatSliderModule,
+    MatSlideToggleModule, 
+    MatToolbarModule, 
+    MatListModule, 
     MatGridListModule,
-    MatAutocompleteModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatCardModule,
+    MatCardModule, 
+    MatIconModule, 
+    MatProgressSpinnerModule, 
     MatDialogModule,
-    MatInputModule,
-    MatCheckboxModule,
     FlexLayoutModule,
     AppRoutingModule,
-    MatProgressSpinnerModule,
-    MatSliderModule
-  ],
+    RestangularModule.forRoot(RestangularConfigFactory)
+    ],
   providers: [
     DishService,
     PromotionService,

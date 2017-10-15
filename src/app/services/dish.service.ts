@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
+import { RestangularModule, Restangular} from 'ngx-restangular';
 
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
@@ -15,28 +16,35 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DishService {
 
-  constructor(private http: Http, 
+/*   constructor(private http: Http, 
+    private processHTTPMsgService: ProcessHTTPMsgService) { } */
+
+  constructor(private restangular: Restangular, 
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]> {
+    return this.restangular.all('dishes').getList();
     //return Observable.of(DISHES).delay(2000);
-    return this.http.get(baseURL + 'dishes')
+    /* return this.http.get(baseURL + 'dishes')
       .map(res => { return this.processHTTPMsgService.extractData(res); })
-      .catch(error => { return this.processHTTPMsgService.handleError(error); });
+      .catch(error => { return this.processHTTPMsgService.handleError(error); }); */
   }
 
   getDish(id: number): Observable<Dish> {
+    return this.restangular.one('dishes', id).get();
     //return Observable.of(DISHES.filter((dish) => (dish.id == id))[0]).delay(2000);
-    return this.http.get(baseURL + 'dishes/' + id)
+    /* return this.http.get(baseURL + 'dishes/' + id)
       .map(res => { return this.processHTTPMsgService.extractData(res); })
-      .catch(error => { return this.processHTTPMsgService.handleError(error); });
+      .catch(error => { return this.processHTTPMsgService.handleError(error); }); */
   }
 
   getFeaturedDish(): Observable<Dish> {
+    return this.restangular.all('dishes').getList({featured: true})
+      .map(dishes => dishes[0]);
     //return Observable.of(DISHES.filter((dish) => (dish.featured))[0]).delay(2000);
-    return this.http.get(baseURL + 'dishes?featured=true')
+    /* return this.http.get(baseURL + 'dishes?featured=true')
       .map(res => { return this.processHTTPMsgService.extractData(res)[0]; })
-      .catch(error => { return this.processHTTPMsgService.handleError(error); });
+      .catch(error => { return this.processHTTPMsgService.handleError(error); }); */
   }
 
   getDishIds(): Observable<number[]> {
