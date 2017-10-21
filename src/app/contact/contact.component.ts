@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Feedback, ContactType } from './../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { visibility, flyInOut, expand } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
+import { Params, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -12,14 +15,21 @@ import { flyInOut } from '../animations/app.animation';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    visibility(),
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup;
   feedback: Feedback;
+  feedbackcopy = null;
   contactType = ContactType;
+  visibility = 'show';
+  errMess: string;
+  showprogress: boolean;
+  hiddeform: boolean;
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -50,8 +60,12 @@ export class ContactComponent implements OnInit {
 
   @ViewChild(FormGroupDirective) feebackFormDirective;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private feedbackService: FeedbackService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute) { 
     this.createForm();
+    this.showprogress = false;
+    this.hiddeform = false;
   }
 
   ngOnInit() {
@@ -91,17 +105,24 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
+    this.showprogress = true;
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
-    /* this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    }); */
+    this.route.params
+      .switchMap((params: Params) => { this.visibility = 'hidden'; 
+        return this.feedbackService.submitFeedback(this.feedback); 
+      })
+      .subscribe(feedback => { this.feedback = feedback; this.feedbackcopy = feedback; console.log(this.feedback);
+        this.feedbackcopy.save();
+        this.visibility = 'shown'; 
+        this.showprogress = false; 
+        this.hiddeform = true;
+        setTimeout(()=>{    
+          this.visibility = 'hidden';
+          this.hiddeform = false;
+     },5000);
+      }),
+      errmess => { this.feedback = null; this.errMess = <any>errmess; };
+      
     this.feebackFormDirective.resetForm({
       firstname: '',
       lastname: '',

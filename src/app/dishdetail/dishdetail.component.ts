@@ -124,7 +124,6 @@ export class DishdetailComponent implements OnInit {
       rating: 5,
       comment: '',
       author: ''
-      //date: new Date()
     });
   }
 

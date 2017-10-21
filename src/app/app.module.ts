@@ -1,3 +1,4 @@
+import { FeedbackService } from './services/feedback.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -76,7 +77,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     PromotionService,
     LeaderService,
     { provide: 'BaseURL', useValue: baseURL },
-    ProcessHTTPMsgService
+    ProcessHTTPMsgService,
+    FeedbackService
   ],
   entryComponents: [
     LoginComponent
